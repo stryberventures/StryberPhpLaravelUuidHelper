@@ -17,9 +17,7 @@ final class UuidServiceProvider extends ServiceProvider
 
     private function registerClasses(): void
     {
-        $this->app->when(SetRequestId::class)
-            ->needs(UuidGenerator::class)
-            ->give(PersistentUuidGenerator::class);
+        $this->app->bind(UuidGenerator::class, PersistentUuidGenerator::class);
         $this->app->singleton(PersistentUuidGenerator::class, fn() => PersistentUuidGenerator::instance());
     }
 
